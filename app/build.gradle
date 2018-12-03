@@ -17,12 +17,32 @@ android {
         }
     }
 }
+//1,增加这个东西
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+        maven { url "https://maven.google.com" }
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
+
+    //2,导入design，原因是通用广告栏ConvenientBanner使用了里面的元素
+    implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //3，butterKnife，不是必须添加，如果你使用的项目使用的是DataBinding，可以不添加该依赖
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
+    //4，通用广告栏ConvenientBanner
+    implementation 'com.bigkoo:ConvenientBanner:2.1.4'
 }
